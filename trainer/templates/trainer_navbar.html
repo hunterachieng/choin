@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,24 +11,23 @@
     <link rel="icon" type="image/x-icon" href="{% static 'images/akira-favicon.ico' %}">
     <title>Choin</title>
 </head>
+
 <body>
 
     <div class="sidebar">
         <i class="fas fa-times"></i>
         <img id="logo" src="{% static 'images/AkiraChix-Logo.png' %}" />
 
-       
-        <div id="navItems">
-        <a href="" class="nav">Home</a>
-        <a href="{% url 'trainer_reward' %}" class="nav">Reward</a>
-        <a href="{% url 'trainer_trans' %}" class="nav">Transactions</a>
-        <a href="{% url 'trainer-profile' %}" class="nav">Profile</a>
 
-        
+        <div id="navItems">
+            <a href="{% url 'trainer_dashboard' %}" class="nav">Home</a>
+            <a href="{% url 'trainer_reward' %}" class="nav">Reward</a>
+            <a href="{% url 'trainer_trans' %}" class="nav">Transactions</a>
+            <a href="{% url 'trainer-profile' %}" class="nav">Profile</a>
+        </div>
     </div>
-     </div>
-    {%block content%}
-    {%endblock%}
+    {%block content%} {%endblock%}
 </body>
 <script src="{% static 'js/navbar.js' %}"></script>
+
 </html>

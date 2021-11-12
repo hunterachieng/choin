@@ -250,7 +250,7 @@ th, td {
      }
       .card{ 
          margin-top: 4%;
-        background-color:rgba(128, 128, 128, 0.281);
+        background-color:rgba(238, 148, 230, 0.281);
         margin-left: 5%;
         width: 225px;
         border-radius: 8px;
@@ -320,6 +320,7 @@ th, td {
             /* position: absolute; */
         }
         ::-webkit-file-upload-button {
+            
             background:purple;
             color:white;
             border-radius: 5px;

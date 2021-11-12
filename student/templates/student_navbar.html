@@ -9,52 +9,14 @@
     <link rel="stylesheet" href="{% static 'navbar.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/akira-favicon.ico' %}">
     <title>Choin</title>
-    <style>
-        .dropbtn {
-            background-color: transparent;
-            color: rgb(0, 0, 0);
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-        .dropbtn:hover,
-        .dropbtn:focus {
-            background-color: #BBBBBB;
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #AAAAAA;
-            min-width: 160px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown a:hover {
-            background-color: #ddd;
-        }
-        .show {
-            display: block;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="sidebar">
         <i class="fas fa-times"></i>
         <img id="logo" src="{% static 'images/AkiraChix-Logo.png' %}" />
         <div id="navItems">
-            <a href="{%url 'student_dashboard'%}" class="nav">Home</a>
+            <a href="{%url 'student_dashboard' %}" class="nav">Home</a>
             <a href="{% url 'redeem' %}" class="nav">Redeem</a>
             <a href="{% url 'student_transactions' %}" class="nav">Transactions</a>
             <a href="{% url 'student-profile' %}" class="nav">Profile</a>

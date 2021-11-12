@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <div class="prof_detail">
+        {%if user.image%}
+        <img id="profile" src="{{user.image.url}}">
+    {%else%}
+        <img id="profile" src="/static/images/placeholderperson.jpg">
+    {%endif%}
+       
+    </div>
     <div id="profile_up">
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">
@@ -32,17 +40,15 @@
         </div>
     </div>
 </div>
-    <div class="prof_detail">
-    <img id="profile" src="/static/images/me-removebg-preview.png" />
-    <!-- <h1 id="choin_available">Choins:2000</h1> -->
-</div>
+   
     </div>
     <h1>Hello {{user.username}} </h1>
     <hr>
-    <div class="row">
-        <h3 id="proff">Profile
-        </h3>
-        <div class="column">
+    <div class="top-row">
+       
+        <div class="column-1">
+            <h3 id="proff">Profile
+            </h3>
             <div class="card">
             {%if user.image%}
                 <img id="img" src="{{user.image.url}}">
@@ -57,14 +63,15 @@
                 {% endfor %}
             </div>
         </div>
-        <h3 id="title">Latest transactions
-        </h3>
+        
         <div class="column">
+            <h3 id="title">Latest transactions
+            </h3>
             <table>
-                <th>SENDER</th>
-                <th>REASON</th>
-                <th>CHOIN</th>
-                <th>TIME</th>
+                <th>Sender</th>
+                <th>Reason</th>
+                <th>Choin</th>
+                <th>Time</th>
                 {% for trans in transactions %}
                 <tr>
                     <td>{{ trans.sender}}</td>
@@ -77,17 +84,18 @@
         </div>
     </div>
     <div class="row">
-        <h3 id="proff">Latest redeem
-        </h3>
-        <div class="column">
-            <div class="card">
+        
+        <div class="column-2">
+            <h3 id="proff">Latest redeem
+            </h3>
+            <div class="card-2">
                 {%for item in reward_items%}
-                <div class="row">
-                    <div class="column">
+                <div >
+                    <div >
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
                     </div>
-                    <div class="column">
+                    <div>
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
                     </div>
@@ -95,10 +103,12 @@
                 {%endfor%}
             </div>
         </div>
-        <h3 id="title">Leaderboard
-        </h3>
-        <div class="column">
+       
+        <div class="tab">
+           
             <table>
+                <h3 id="table-heading">Leaderboard
+                </h3>
                 <tr>
                     <th></th>
                     <th> First Name</th>
