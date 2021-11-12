@@ -60,7 +60,8 @@ class LoginView(FormView):
             else:
                 # return HttpResponseRedirect(reverse_lazy('change_password'))
                 if user.role==1:
-                    return HttpResponseRedirect(reverse_lazy('view_student_leaderboard'))
+                    print(user.role)
+                    return HttpResponseRedirect(reverse_lazy('leadership-profile'))
                 elif user.role==2:
                     return HttpResponseRedirect(reverse_lazy('trainer-profile'))
                 elif user.role==3:
@@ -84,8 +85,9 @@ def change_password(request):
             messages.success(request, 'Your password was successfully updated!')
             user.is_previously_logged_in=True
             user.save()
-            
-            if user.role==2:
+            if user.role==1:
+                return HttpResponseRedirect(reverse_lazy('leadership-profile'))
+            elif user.role==2:
                 return HttpResponseRedirect(reverse_lazy('trainer-profile'))
             elif user.role==3:
                 print(user.role)

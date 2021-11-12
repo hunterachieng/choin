@@ -1,5 +1,5 @@
 {% load static %}
-{% include 'trainer_navbar.html' %}
+{% include 'leader_navbar.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,10 +30,9 @@
     <div class="profile-edit">
         
         <form method="post">
-            <h2>hello</h2>
+            <h2>Hello {{user.username}}</h2>
             {%csrf_token%}
             {{ user_form.as_p }}
-            {{ profile_form.as_p }}
     <button type="submit">Save Profile</button>
         </form>
         
