@@ -23,11 +23,28 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.db import IntegrityError
 # from .models import ActivateRedeemPage
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
 from .forms import UpdateProfileForm
+
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
+
+
+def group_required(Leadership):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if u.groups.filter(name='Leadership').exists() :
+                return True
+            else:
+                return False
+        return redirect('login')
+    return user_passes_test(in_groups)
+
 
 class Blockchain:
     def __init__(self):
@@ -164,8 +181,11 @@ def replace_chain(request): #New
                         'actual_chain': blockchain.chain}
     return JsonResponse(response)
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def profile_upload(request):
+   
     template = "admin_dash.html"
     student_data = Student.objects.all()
     try:
@@ -197,7 +217,10 @@ def profile_upload(request):
             student_data.append(user)
             user.role=User.STUDENT
             user.save()
-       
+
+            user_group = Group.objects.get(name='Students') 
+            user.groups.add(user_group)
+    
         users=User.objects.all().filter(role=3)  # send the email to the recipent    
         for user in users:                                   
             password = User.objects.make_random_password(length=10, 
@@ -213,10 +236,13 @@ def profile_upload(request):
 
     except IntegrityError as e: 
         return render(request,"error.html")
+
     context = {}
     return render(request, template, context)
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def leadership_profile(request):   
     if request.method == 'POST':
         user_form = UpdateProfileForm(request.POST,request.FILES, instance=request.user)
@@ -234,13 +260,15 @@ def leadership_profile(request):
         }
     return render(request, 'leadership_profile.html', args)
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def view_student_leaderboard(request):
     students=Wallet.objects.all().order_by('-choinBalance')
     
     return render(request,'all_students.html',{'students':students})
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def trainer_profile_upload(request):
     template = "admin_dash.html"
     trainer_data = Trainer.objects.all()
@@ -271,6 +299,8 @@ def trainer_profile_upload(request):
             data.append(user)
             user.role=User.TRAINER
             user.save()
+            user_group = Group.objects.get(name='Trainers') 
+            user.groups.add(user_group)
        
         users=User.objects.all().filter(role=2)
         
@@ -294,7 +324,8 @@ def trainer_profile_upload(request):
     context = {}
     return render(request, template, context)
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def reward(request):
     allStudents = User.objects.all().filter(role=3)
     paginator = Paginator(allStudents, 6)
@@ -302,7 +333,8 @@ def reward(request):
     students = paginator.get_page(page)
     return render(request,'reward.html',{'students':students})
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def trans(request):
     tran = Transaction.objects.all()
     paginator = Paginator(tran, 6)
@@ -311,7 +343,9 @@ def trans(request):
    
     return render(request,'transactions.html',{'transactions':transactions})
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def reward_confirm(request,id):
     student = User.objects.get(id=id)
     metrics = Metrics.objects.all()
@@ -368,14 +402,18 @@ def reward_confirm(request,id):
 
 
     return render(request,'reward_confirm.html',{'student':student,'metrics':metrics,'met':met, 'wallets':wallets,'val':val})
-   
-@login_required(login_url='login')
+
+
+@login_required(login_url='login')   
+@group_required('Leadership')
 def delete_metric(request,id):
     metrics_delete = Metrics.objects.get(id=id)
     metrics_delete.delete()
     return redirect("metrics")
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def edit_metric(request,id): 
     the_metrics = Metrics.objects.get(id=id)
     if request.method == "POST":
@@ -388,9 +426,8 @@ def edit_metric(request,id):
     return render(request, "edit_metric.html", {"form":form})
      
 
-
-
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def addMetric(request): 
     metrics_list = Metrics.objects.all()
     paginator = Paginator(metrics_list, 6)
@@ -408,7 +445,9 @@ def addMetric(request):
         form = AddMetricsForm()
     return render(request,'metrics.html',{'form':form, 'metrics':metrics})
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def search_student(request):
     search_post = request.GET.get('search')
     if search_post:
@@ -420,7 +459,9 @@ def search_student(request):
         return render (request,'reward.html',{'students':students,'message':message})
     return render (request,'reward.html',{'students':students,'results':results})
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def add_reward(request):
     if request.method=="POST":
         form=RewardItemForm(request.POST,request.FILES)
@@ -433,7 +474,9 @@ def add_reward(request):
         form=RewardItemForm()
     return render(request,"reward_item.html",{"form":form})
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def redeemableItemsList(request):
     items = RedeemableItem.objects.all()
     paginator = Paginator(items, 6)
@@ -442,7 +485,8 @@ def redeemableItemsList(request):
    
     return render(request,'redeemable_items_list.html',{'redeemable_items':redeemable_items})
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def search_redeemable_item(request):
     search_post = request.GET.get('search')
     if search_post:
@@ -454,7 +498,8 @@ def search_redeemable_item(request):
         return render (request,'redeemable_items_list.html',{'items':items,'message':message})
     return render (request,'redeemable_items_list.html',{'items':items,'results':results})
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def search_student_by_admin(request):
     search_post = request.GET.get('search')
     if search_post:
@@ -466,7 +511,9 @@ def search_student_by_admin(request):
         return render (request,'reward.html',{'students':students,'message':message})
     return render (request,'reward.html',{'students':students,'results':results})
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def ajax_change_status(request):
     activate_page = request.GET.get('activate_page', True)
     # job_id = request.GET.get('job_id', False)
@@ -481,7 +528,8 @@ def ajax_change_status(request):
         print("did not change")
         return False
 
-@login_required(login_url='login')
+@login_required(login_url='login') 
+@group_required('Leadership')
 def deactivate_ajax_change_status(request):
     activate_page = request.GET.get('activate_page', False)
     # job_id = request.GET.get('job_id', False)
@@ -496,7 +544,9 @@ def deactivate_ajax_change_status(request):
         print("did not change")
         return False
 
-@login_required(login_url='login')
+
+@login_required(login_url='login') 
+@group_required('Leadership')
 def redeemed_items(request):
     items= Redeemed.objects.all()
     return render(request,'redeemed_items.html',{'items':items})

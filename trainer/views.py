@@ -23,6 +23,22 @@ from urllib.parse import urlparse
 from django.http import JsonResponse, HttpResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt #New
 from django.db.models import Q
+
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def group_required(Trainers):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated:
+            if u.groups.filter(name='Trainers').exists() :
+                return True
+            else:
+                return False
+        return redirect('login')
+    return user_passes_test(in_groups)
+
+# @login_required(login_url='login') 
+# @group_required('Trainers')
 class Blockchain:
     def __init__(self):
         self.chain = []

@@ -10,6 +10,8 @@ from leadership.models import RedeemableItem
 class Student(models.Model):
     user=models.OneToOneField(User,on_delete=CASCADE,null=True,related_name='userprofile')
     class_name = models.CharField(max_length=20, blank=True)
+
+    
     
 
 @receiver(post_save, sender=User)

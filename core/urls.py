@@ -11,5 +11,6 @@ urlpatterns=[
     path('profile/',Profile,name='user-profile'),
     path('navbar/',navbar,name='nav_bar'),
     path('change_password/',change_password, name='change_password'),
+    path('forbidden/',forbidden, name='forbidden'),
 
     ]
