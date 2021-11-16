@@ -39,9 +39,10 @@
 
 
 <table>
-    <th>PRODUCT</th>
-    <th>QUANTITY</th>
-    <th>CHOINS</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Choins</th>
+    <th>Date</th>
    
     {% for i in redeems %}
    
@@ -51,7 +52,7 @@
         <td>{{ i.product}}</td>
         <td>{{ i.quantity}}</td>
         <td>{{ i.total}}</td>
-       
+        <td>{{ i.date}}</td>
 
     </tr>
     {% endfor %}

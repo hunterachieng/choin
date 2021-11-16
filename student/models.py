@@ -58,3 +58,4 @@ class Redeemed(models.Model):
     quantity = models.IntegerField(default=0)
     total =  models.IntegerField(default=0)
     student = models.ForeignKey(Student,on_delete=CASCADE,null=True)
+    date = models.DateField(auto_now_add=True,null=True)

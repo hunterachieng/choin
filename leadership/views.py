@@ -80,7 +80,7 @@ class Blockchain:
         self.transactions.append({'sender': sender,
                                   'receiver': receiver,
                                   'amount': amount,
-                                  'time': str(datetime.datetime.now())})
+                                  'time': time})
         previous_block = self.get_last_block()
         return previous_block['index'] + 1
 
@@ -327,7 +327,7 @@ def reward_confirm(request,id):
             nonce = blockchain.proof_of_work(previous_nonce)
             previous_hash = blockchain.hash(previous_block)
             user = request.user
-            blockchain.add_transaction(sender =user.email , receiver = student.username, amount = met, time=str(datetime.datetime.now()))
+            blockchain.add_transaction(sender =user.email , receiver = student.username, amount = met, time="2000-10-10")
             block = blockchain.create_block(nonce, previous_hash)
             response = {
                     'message': f'Congratulations, you just awarded {student.username} !',

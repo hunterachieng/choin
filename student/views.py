@@ -121,8 +121,8 @@ def redeem_active(request):
 def student_dashboard(request):
     try:
         student=Student.objects.get(user=request.user)
-        transactions = Transaction.objects.all().filter(receiver = request.user.username)
-        students=Wallet.objects.all().order_by('-choinBalance')
+        transactions = Transaction.objects.all().filter(receiver = request.user.username)[:4]
+        students=Wallet.objects.all().order_by('-choinBalance')[:3]
         choin_balance=Wallet.objects.all().filter(owner=request.user)
         data={'student':student,'choin_balance':choin_balance,'students':students,'transactions':transactions}
         return render(request,'stud_dashboard.html',data)
