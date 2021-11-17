@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://kit.fontawesome.com/f2db061d7e.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +29,7 @@
         <a href="{% url 'trans' %}" class="nav">Transactions</a>
         <a href="{% url 'metrics' %}" class="nav">Metrics</a>
         <a href="{% url 'add-reward-item' %}" class="nav">Add Reward Item</a>
-        <a href="{% url 'leadership-profile' %}" class="nav">Profile</a>
+        <a href="{% url 'view-leadership-profile' id=user.id %}" class="nav">Profile</a>
         
 
     </div>

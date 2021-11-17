@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import add_reward, redeemed_items,search_student_by_admin, ajax_change_status, deactivate_ajax_change_status,search_redeemable_item, add_transaction,search_student,connect_node, delete_metric, edit_metric, get_chain, is_valid, profile_upload, replace_chain, reward, reward_confirm,trainer_profile_upload,addMetric, trans, redeemableItemsList,view_student_leaderboard,leadership_profile
+from . views import *
 urlpatterns =[
     path('get_chain/', get_chain, name="get_chain"),
     path('add_transaction/', add_transaction, name="add_transaction"), #New
@@ -23,7 +23,8 @@ urlpatterns =[
     path('deactivate/ajax/change_status/', deactivate_ajax_change_status, name='deactivate_ajax_change_status'),
     path('leaderboard/',view_student_leaderboard, name='view_student_leaderboard'),
     path('redeemed_items/',redeemed_items, name='redeemed_items'),
-    path('leadership-profile/',leadership_profile, name='leadership-profile'),
+    path('leadership-profile/<int:id>/',view_leadership_profile, name='view-leadership-profile'),
+    path('edit-leadership-profile/',leadership_profile, name='leadership-profile'),
 
 
 ]
