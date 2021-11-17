@@ -551,3 +551,9 @@ def redeemed_items(request):
     items= Redeemed.objects.all()
     return render(request,'redeemed_items.html',{'items':items})
 
+
+@login_required(login_url='login') 
+@group_required('Leadership')
+def view_leadership_profile(request,id):
+    user_id=User.objects.get(id=id)
+    return render(request,"view_leadership_profile.html",{'user_id':user_id})

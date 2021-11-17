@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+    <script src="https://kit.fontawesome.com/f2db061d7e.js" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +25,7 @@
             <a href="{% url 'trainer_dashboard' %}" class="nav">Home</a>
             <a href="{% url 'trainer_reward' %}" class="nav">Reward</a>
             <a href="{% url 'trainer_trans' %}" class="nav">Transactions</a>
-            <a href="{% url 'trainer-profile' %}" class="nav">Profile</a>
+            <a href="{% url 'view-trainer-profile' id=user.id %}" class="nav">Profile</a>
         </div>
     </div>
     {%block content%} {%endblock%}
