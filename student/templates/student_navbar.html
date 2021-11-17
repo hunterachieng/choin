@@ -21,7 +21,7 @@
             <a href="{%url 'student_dashboard'%}" class="nav">Home</a>
             <a href="{% url 'redeem' %}" class="nav">Redeem</a>
             <a href="{% url 'student_transactions' %}" class="nav">Transactions</a>
-            <a href="{% url 'student-profile' %}" class="nav">Profile</a>
+            <a href="{% url 'view-student-profile' id=user.id %}" class="nav">Profile</a>
         </div>
     </div>
     {%block content%} {%endblock%}

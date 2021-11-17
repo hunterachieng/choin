@@ -59,8 +59,9 @@ def student_profile(request):
 
 @login_required(login_url='login') 
 @group_required('Students')
-def student_home(request):
-    return render(request,'student_home.html')
+def view_profile(request,id):
+    user_id=User.objects.get(id=id)
+    return render(request,"view_profile.html",{'user_id':user_id})
 
 
 @login_required(login_url='login') 

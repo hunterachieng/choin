@@ -18,7 +18,11 @@
             <i class="fas fa-bars menu"></i>
         </div>
    <div class="pool">
-   <img src="https://bit.ly/2Zh75Ex" alt="profile-image" id="profile-image"/>
+    {%if image.url %}
+            <img id="profile-image" src="{{user.image.url}}">
+        {%else%}
+            <img id="profile-image" src="/static/images/placeholderperson.jpg">
+        {%endif%}
        
    </div>
    </div>

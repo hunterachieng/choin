@@ -12,9 +12,11 @@ body{
     margin-left: 80%;
 }
 #profile-image{
-    width: 30%;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-left: 40%;
+    box-shadow: rgb(48, 47, 47) 2px 2px 2px;
 }
 #mini-logo{
     display: none !important;
