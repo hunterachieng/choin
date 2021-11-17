@@ -22,12 +22,18 @@
             <th> Name</th>
             <th>Choins</th>
         </tr>
+        {%for student in students%}
         <tr>
-            <td><img id="Image" src="/static/images/me-removebg-preview.png" />
-            </td>
-            <td>Eunice</td>
-            <td>100</td>
+            {%if student.owner.image%}
+            <td><img id="images" src="{{student.owner.image.url}}" /></td>
+            {%else%}
+            <td><img id="images" src="/static/images/placeholderperson.jpg" /></td>
+            {%endif%}
+            <td>{{student.owner.first_name}}</td>
+            <td>{{student.owner.last_name}}</td>
+            <td>{{ student.choinBalance }}</td>
         </tr>
+        {%endfor%}
         <tr>
             <td><img id="Image" src="/static/images/me-removebg-preview.png" />
             </td>
@@ -52,12 +58,7 @@
             <td>Sarah</td>
             <td>99</td>
         </tr>
-        <tr>
-            <td><img id="Image" src="/static/images/me-removebg-preview.png" />
-            </td>
-            <td>Chantal</td>
-            <td>98</td>
-        </tr>
+
     </table>
     </div>
     </div>
