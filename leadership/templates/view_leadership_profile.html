@@ -1,0 +1,41 @@
+{% load static %} 
+{% include 'leader_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/akira-favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'my_profile.css' %}">
+
+    <title>Choin</title>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="particles-home">
+    <div class="card">
+        {%if user.image%}
+                <img id="img-prof" src="{{user.image.url}}">
+        {%else%}
+            <img id="img-prof" src="/static/images/placeholderperson.jpg">
+        {%endif%}
+        <br>
+        <a href="{%url 'leadership-profile'%}" class="edit-icon"><i  class="fas fa-pen"></i></a>
+        <h1>{{user_id.first_name}} {{user_id.last_name}}</h1>
+        <p class="title">{{user.email}}</p>
+        
+       
+        <p></p>
+      </div>
+    </div>
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+      <!-- <script src ="{% static 'particles.min.js' %}"></script> -->
+      <script>
+          
+  window.particlesJS.load('particles-js', "{% static 'particles.json' %}");
+          
+      </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import add_transaction,trainer_dashboard,connect_node, get_chain, is_valid, replace_chain, reward, reward_confirm, search_student, trainer_home,trainer_profile, trans
+from . views import *
 urlpatterns =[
     path('get_chain/', get_chain, name="get_chain"),
     path('add_transaction/', add_transaction, name="add_transaction"), #New
@@ -12,6 +12,7 @@ urlpatterns =[
     path('search/',search_student,name='trainer_search_student'),
     path('trainer-home/',trainer_home,name='trainer-home'),
     path('trainer-profile/',trainer_profile,name='trainer-profile'),
+    path('view-trainer-profile/<int:id>/',view_trainer_profile,name='view-trainer-profile'),
     path('trainer_dashboard/',trainer_dashboard,name='trainer_dashboard'),
     ]
 
