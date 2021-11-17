@@ -16,7 +16,7 @@ body{
     color: purple;
     font-size: 15px;
     margin-top: 5.5%;
-     position:relative;
+    position:fixed;
    
 }
 #trainer_btn_upload{
@@ -75,6 +75,7 @@ th, td {
     width:56rem;
     border-radius: 8px;
     height:35vh;
+    position: fixed;
     
     
 }
@@ -86,7 +87,7 @@ th, td {
     background-color: white;
     margin-left: 2%;
     margin-top: 2%;
-    position: absolute;
+    
     border-radius: 5px;
     width:290px;
     height:175px;
@@ -152,7 +153,7 @@ th, td {
     #heading{
         margin-left: 50%;
         margin-top:6%;
-       position: absolute;
+       
        color: #561278;
        font-weight: lighter;
         
@@ -250,7 +251,7 @@ th, td {
      }
       .card{ 
          margin-top: 4%;
-        background-color:rgba(128, 128, 128, 0.281);
+        background-color:rgba(238, 148, 230, 0.281);
         margin-left: 5%;
         width: 225px;
         border-radius: 8px;
@@ -320,6 +321,7 @@ th, td {
             /* position: absolute; */
         }
         ::-webkit-file-upload-button {
+            
             background:purple;
             color:white;
             border-radius: 5px;
