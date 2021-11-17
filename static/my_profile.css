@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+    margin: 0 0 0 20%;
+  
+    background:linear-gradient(to right, #fff9fd, #f3dbf7);
+}
+.card {
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.486);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    margin-top: 8%;
+    background-color:#efe6f3;
+    color: black;
+    position: relative;
+    padding: 5%;
+  }
+  .edit-icon{
+      color: purple;
+      margin-left: 30%;
+  }
+  .card:hover{
+      box-shadow: 0;
+  }
+  
+  /* .title {
+    color: grey;
+    font-size: 18px;
+  } */
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  /* a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  } */
+/*   
+  button:hover, a:hover {
+    opacity: 0.7;
+  } */
+
+  #img-prof{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 4px ;
+    margin-top: 4%;
+
+}
+#particles-js {
+    position: absolute;
+    width: 79%;
+    height: 95%;
+    overflow: hidden;
+  
+  }
