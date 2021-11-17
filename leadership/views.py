@@ -32,7 +32,7 @@ from .forms import UpdateProfileForm
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-
+ 
 
 def group_required(Leadership):
     """Requires user membership in at least one of the groups passed in."""
