@@ -7,6 +7,7 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name','image')
+       
 
 # Edit User Profile form
 class UserProfileForm(forms.ModelForm):
