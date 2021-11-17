@@ -122,13 +122,15 @@
                 {%for item in reward_items%}
                 <div class="row">
                     <div class="column">
+                        <img id="image-reward" alt="redeemable-item" src="{{redeems.product.image.url}}">
+                        <h3>{{redeems.product}}</h3>
+                        <h3>{{redeems.quantity}}</h3>
+                        <h3>{{redeems.date}}</h3>
+                    </div>
+                    <!-- <div class="column">
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
-                    </div>
-                    <div class="column">
-                        <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
-                        <h3>{{item.item_name}}</h3>
-                    </div>
+                    </div> -->
                 </div>
                 {%endfor%}
             </div>

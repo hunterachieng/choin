@@ -143,10 +143,11 @@ def redeem_active(request):
 def student_dashboard(request):
     try:
         student=Student.objects.get(user=request.user)
+        redeems = Redeemed.objects.filter(student=student).last()
         transactions = Transaction.objects.all().filter(receiver = request.user.username)[:4]
         students=Wallet.objects.all().order_by('-choinBalance')[:3]
         choin_balance=Wallet.objects.all().filter(owner=request.user)
-        data={'student':student,'choin_balance':choin_balance,'students':students,'transactions':transactions}
+        data={'student':student,'choin_balance':choin_balance,'students':students,'transactions':transactions, 'redeems':redeems}
         return render(request,'stud_dashboard.html',data)
     except ObjectDoesNotExist:
         return render(request,'forbidden.html')
@@ -206,7 +207,7 @@ def student_redeem(request):
     for b in bal:
         for ord in order:
 
-            if b.choinBalance < ord.calculate_cart_total:
+            if b.choinBalance < ord.calculate_cart_total or ord.calculate_cart_items:
                 return redirect('redeem_failed')
             else:
                 
