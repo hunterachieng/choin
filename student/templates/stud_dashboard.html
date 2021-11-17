@@ -22,21 +22,12 @@
         </div>
             <div id="myDropdown" class="dropdown-content">
             <button class="delete-notification" data-id="{{ notification.id }}">X</button>
-<<<<<<< HEAD
                 <h4>New Notifications</h4>
                 <button id="read">Mark all as read</button>
                     <button id="delete">Delete all</button>
                 <span>{% for notification in user.notifications.unread %}</span>
                 <div class="btns">
                     
-=======
-                <h2>New Notifications</h2>
-                <button id="read">Mark all as read</button>
-                <button id="delete">Delete all</button>
-                <span >{% for notification in user.notifications.unread %}</span>
-                <div class="btns">
-                   
->>>>>>> 1d426be1863317f3183b84bb34d3916824fbbd54
                     <p>You have a new message from <b>{{ notification.actor.username }}
                         <span class="text-muted">{{ notification.timesince }} ago</span></p><br> {{ notification.description |linebreaksbr }}
 
@@ -128,22 +119,21 @@
         <div class="column">
             <h3 id="proff">Latest redeem
             </h3>
-            <div class="card">
-                {%for item in reward_items%}
-                <div class="row">
+            <div class="card-2">
+                
+               
                     <div class="column">
                         <img id="image-reward" alt="redeemable-item" src="{{redeems.product.image.url}}">
-                        <h3>{{redeems.product}}</h3>
-                        <h3>{{redeems.quantity}}</h3>
-                        <h3>{{redeems.date}}</h3>
+                        <p>{{redeems.product}}</p>
+                        <!-- <p>{{redeems.quantity}}</p> -->
+                        <p>{{redeems.date}}</p>
                     </div>
                     <!-- <div class="column">
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
                     </div> -->
-                </div>
-                {%endfor%}
-            </div>
+           
+        </div>
         </div>
        
         <div class="column2">

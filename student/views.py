@@ -208,7 +208,7 @@ def student_redeem(request):
     for b in bal:
         for ord in order:
 
-            if b.choinBalance < ord.calculate_cart_total or ord.calculate_cart_items:
+            if b.choinBalance < ord.calculate_cart_total:
                 return redirect('redeem_failed')
             else:
                 
