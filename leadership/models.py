@@ -73,7 +73,7 @@ class Transaction(models.Model):
     sender =models.EmailField()
     metric = models.CharField(max_length = 100)
     value = models.IntegerField()
-    time =models.DateTimeField(auto_now_add=True,null=True)
+    time =models.DateField(auto_now_add=True,null=True)
 
     def __str__(self):
         return self.receiver

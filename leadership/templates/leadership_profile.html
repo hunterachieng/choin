@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'leader_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'profiles.css' %}">
+  <script src="https://kit.fontawesome.com/953e8760a2.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/x-icon" href="{% static 'images/akira-favicon.ico' %}">
+  <title>Choin</title>
+</head>
+<body>
+
+    {%block content%}
+    <img id="mini-logo" src="{% static 'images/AkiraChix-Logo.png' %}" />
+    <div class="mini-header"> 
+    <div>
+        <i class="fas fa-bars menu"></i>
+    </div>
+
+    <div class="pool">
+        <img src="https://bit.ly/2Zh75Ex" alt="profile-image" id="profile-image"/>
+       
+           
+        </div>
+    </div>
+    
+    
+    <div class="profile-edit">
+        
+        <form method="post">
+            <h2>Hello {{user.username}}</h2>
+            {%csrf_token%}
+            {{ user_form.as_p }}
+    <button type="submit">Save Profile</button>
+        </form>
+        
+    </div>
+    {%endblock%}
+    <script src="{% static 'js/navbar.js' %}"></script>
+</body>
+</html>

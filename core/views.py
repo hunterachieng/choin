@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from django.urls.base import reverse_lazy
 from django.contrib.auth import login
@@ -28,15 +29,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.signals import user_logged_in
 from django.contrib.auth.models import update_last_login
 
-# def update_first_login(sender, user, **kwargs):
-#     if user.last_login is None:
-#         # First time this user has logged in
-#         kwargs['request'].session['first_login'] = True
-#     # Update the last_login value as normal
-#     update_last_login(sender, user, **kwargs)
 
-# user_logged_in.disconnect(update_last_login)
-# user_logged_in.connect(update_first_login)
 
 class LoginView(FormView):
     """login view"""
@@ -60,7 +53,8 @@ class LoginView(FormView):
             else:
                 # return HttpResponseRedirect(reverse_lazy('change_password'))
                 if user.role==1:
-                    return HttpResponseRedirect(reverse_lazy('view_student_leaderboard'))
+                    print(user.role)
+                    return HttpResponseRedirect(reverse_lazy('leadership-profile'))
                 elif user.role==2:
                     return HttpResponseRedirect(reverse_lazy('trainer-profile'))
                 elif user.role==3:
@@ -84,8 +78,9 @@ def change_password(request):
             messages.success(request, 'Your password was successfully updated!')
             user.is_previously_logged_in=True
             user.save()
-            
-            if user.role==2:
+            if user.role==1:
+                return HttpResponseRedirect(reverse_lazy('leadership-profile'))
+            elif user.role==2:
                 return HttpResponseRedirect(reverse_lazy('trainer-profile'))
             elif user.role==3:
                 print(user.role)
@@ -104,5 +99,9 @@ def Profile(request):
     return render(request,'profile.html')
 def navbar(request):
     return render(request,'navbar.html')
+
+def forbidden(request):
+    return render(request,'forbidden.html')
+
 
 

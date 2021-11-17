@@ -9,23 +9,30 @@
 </head>
 
 <body>
-    <div class="prof_detail">
-        {%if user.image%}
-        <img id="profile" src="{{user.image.url}}">
-    {%else%}
-        <img id="profile" src="/static/images/placeholderperson.jpg">
-    {%endif%}
-       
-    </div>
     <div id="profile_up">
         <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">
-            <i class="fas fa-bell"id="bell"></i>
+            
             {% live_notify_badge badge_class="badge" %}
-            <i class="fa fa-caret-down"></i>
+            
+                <i class="fas fa-bell" id="bell"></i>
+                <button onclick="myFunc()" class="dropbtn fa fa-caret-down" id="click-btn">
+          
         </button>
             <div id="myDropdown" class="dropdown-content">
-                {% for notification in user.notifications.unread %}
+            <button class="delete-notification" data-id="{{ notification.id }}">X</button>
+                <h4>New Notifications</h4>
+                <span class="badge">{% for notification in user.notifications.unread %}</span>
+                <div class="btns">
+                    <button id="read">Mark all as read</button>
+                    <button id="delete">Delete all</button>
+                    <p>You have a new message from <b>{{ notification.actor.username }}
+                        <span class="text-muted">{{ notification.timesince }} ago</span></p><br> {{ notification.description |linebreaksbr }}
+
+                       
+                </div>
+                {%endfor%}
+
+                <!-- {% for notification in user.notifications.unread %}
                 <h4>Notifications</h4>
                 <div class="btns">
                     <button id="read">Mark all as read</button>
@@ -37,18 +44,23 @@
                 </a>
                 <span class="text-muted">{{ notification.timesince }} ago</span></p><br> {{ notification.description |linebreaksbr }}
             <hr> {% endfor %}
-        </div>
+        </div> -->
     </div>
 </div>
-   
+    <div class="prof_detail">
+        {%if user.image%}
+                <img id="img-prof" src="{{user.image.url}}">
+            {%else%}
+                <img id="img-prof" src="/static/images/placeholderperson.jpg">
+            {%endif%}
+</div>
     </div>
     <h1>Hello {{user.username}} </h1>
     <hr>
-    <div class="top-row">
-       
-        <div class="column-1">
-            <h3 id="proff">Profile
-            </h3>
+    <div class="row">
+        <h3 id="proff">Profile
+        </h3>
+        <div class="column">
             <div class="card">
             {%if user.image%}
                 <img id="img" src="{{user.image.url}}">
@@ -63,15 +75,14 @@
                 {% endfor %}
             </div>
         </div>
-        
+        <h3 id="title">Latest transactions
+        </h3>
         <div class="column">
-            <h3 id="title">Latest transactions
-            </h3>
             <table>
-                <th>Sender</th>
-                <th>Reason</th>
-                <th>Choin</th>
-                <th>Time</th>
+                <th>SENDER</th>
+                <th>REASON</th>
+                <th>CHOIN</th>
+                <th>TIME</th>
                 {% for trans in transactions %}
                 <tr>
                     <td>{{ trans.sender}}</td>
@@ -84,18 +95,17 @@
         </div>
     </div>
     <div class="row">
-        
-        <div class="column-2">
-            <h3 id="proff">Latest redeem
-            </h3>
-            <div class="card-2">
+        <h3 id="proff">Latest redeem
+        </h3>
+        <div class="column">
+            <div class="card">
                 {%for item in reward_items%}
-                <div >
-                    <div >
+                <div class="row">
+                    <div class="column">
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
                     </div>
-                    <div>
+                    <div class="column">
                         <img id="image-reward" alt="redeemable-item" src="{{item.image.url}}">
                         <h3>{{item.item_name}}</h3>
                     </div>
@@ -103,12 +113,10 @@
                 {%endfor%}
             </div>
         </div>
-       
-        <div class="tab">
-           
+        <h3 id="title">Leaderboard
+        </h3>
+        <div class="column">
             <table>
-                <h3 id="table-heading">Leaderboard
-                </h3>
                 <tr>
                     <th></th>
                     <th> First Name</th>

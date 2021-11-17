@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="{% static 'navbar.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/akira-favicon.ico' %}">
     <title>Choin</title>
-    
+    <style>
+       
+    </style>
 </head>
 <body>
     <div class="sidebar">
         <i class="fas fa-times"></i>
         <img id="logo" src="{% static 'images/AkiraChix-Logo.png' %}" />
         <div id="navItems">
-            <a href="{%url 'student_dashboard' %}" class="nav">Home</a>
+            <a href="{%url 'student_dashboard'%}" class="nav">Home</a>
             <a href="{% url 'redeem' %}" class="nav">Redeem</a>
             <a href="{% url 'student_transactions' %}" class="nav">Transactions</a>
             <a href="{% url 'student-profile' %}" class="nav">Profile</a>
@@ -28,7 +30,7 @@
 <script>
     /* When the user clicks on the button,
                         toggle between hiding and showing the dropdown content */
-    function myFunction() {
+    function myFunc() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
     // Close the dropdown if the user clicks outside of it
